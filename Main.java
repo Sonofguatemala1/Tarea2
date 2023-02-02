@@ -2,6 +2,21 @@ import java.util.Scanner;
 
 public class Main {
 
+    
+ 
+    
+    /** 
+     * Clase: Estructura de datos. 
+     * Nombre: Pablo Josue Noack Cajbon 
+     * Carnet: 17596
+     * Tarea: Hoja de trabajo 2 
+     * Esta rutina prendente ejecutar la rutina de una calculadora que emplea postfix para hacer los calculos. 
+     * Para esto toma un string separado por espacios y valida si es numero o simbolo. 
+     * En caso sea numero lo agrega a una estructura Stack la cual es un ArrayList
+     * Cuando encuentra un simbolo valida cual simbolo es y manda a llamar a la clase casio que implementa Icalculator. 
+     * Y hace la operación, el resultado lo mete en el stack y busca el siguiente numero y el siguiente simbolo para repetir el proceso.
+     * @param args
+     */
     public static void main(String[] args) {
         Scanner myObj = new Scanner(System.in);
         int i = 0;
@@ -36,15 +51,17 @@ public class Main {
             System.out.println(postfix);
             String[] arrOfStr = postfix.split(" ");
             for (String a : arrOfStr) {
+                //  Valido si el string es un numero y si es un numero pero está al final significa que no hay operación por lo tanto es invalido
                 
                 if(isNumeric(a)==true && j<arrOfStr.length-1 ){
                     float val = Float.parseFloat(a);
                     stack.push(val);
                 }
-
+                //  Si es invalido por ser numero y estar en la ultima parte mando el siguiente mensaje    
                 else if (isNumeric(a)==true && j==arrOfStr.length-1 ){
                     System.out.println("Esta mala la expresión mi rey");
                 }
+                //  Si no es numero entonces valido que el stack tenga mas de un dato porque todas las operaciones tienen que ser binarias-
                 else if (isNumeric(a)==false){
                     
                     if(stack.size()>1){
@@ -108,15 +125,15 @@ public class Main {
 
         }
 
-         // Create a Scanner object
-
-
-
-
-
-
     }
 
+    
+    /** 
+     * Esta clase verifica si el valor de una string puede volverse un float. 
+     * El codigo lo obtuve del link: https://www.geeksforgeeks.org/convert-string-to-double-in-java/
+     * @param strNum
+     * @return boolean
+     */
     public static boolean isNumeric(String strNum) {
         if (strNum == null) {
             return false;
@@ -128,5 +145,6 @@ public class Main {
         }
         return true;
     }
+    
 
 }
