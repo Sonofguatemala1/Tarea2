@@ -5,8 +5,9 @@ public class Main {
     public static void main(String[] args) {
         Scanner myObj = new Scanner(System.in);
         int i = 0;
+        int j = 0;
         Casio casio = new Casio();
-        Istack<String> stack = new StackArrayList<String>();
+        Istack<Float> stack = new StackArrayList<Float>();
 
 
         System.out.println("Bienvenido a la calculadora donde tienes que meter datos de forma extraña!");
@@ -33,13 +34,46 @@ public class Main {
             System.out.println(postfix);
             String[] arrOfStr = postfix.split(" ");
             for (String a : arrOfStr) {
-                System.out.println(a);
-                stack.push(a);
+                j = j+1;
+                if(isNumeric(a)==true ){
+                    float val = Float.parseFloat(a);
+                    stack.push(val);
+                }
+                else{
+                    if(stack.size()>1){
+
+                     if(a =="+"){
+                        float val1 = stack.pop();
+                        float val2 = stack.pop();
+                        stack.push(casio.Add(val1, val2));
+                     }
+
+                     else if(a =="-"){
+                        float val1 = stack.pop();
+                        float val2 = stack.pop();
+                        stack.push(casio.Substraction(val1, val2));
+                     }
+
+                     else if(a =="*"){
+                        float val1 = stack.pop();
+                        float val2 = stack.pop();
+                        stack.push(casio.Multiply(val1, val2));
+                     }
+
+                     else if(a =="/"){
+                        float val1 = stack.pop();
+                        float val2 = stack.pop();
+                        stack.push(casio.Divition(val1, val2));
+                     }
+                     
+                     
+                     
+                    }
+                }
+                
             }
 
-            for (int j = 0; i < stack.size(); j++) {
-                System.out.println(stack.pop());
-              }
+            
 
 
         }
@@ -51,6 +85,18 @@ public class Main {
 
 
 
+    }
+
+    public static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            double d = Float.parseFloat(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 
 }
