@@ -34,10 +34,15 @@ public class Main {
             System.out.println(postfix);
             String[] arrOfStr = postfix.split(" ");
             for (String a : arrOfStr) {
-                j = j+1;
-                if(isNumeric(a)==true ){
+                
+                if(isNumeric(a)==true && j<arrOfStr.length-1 ){
                     float val = Float.parseFloat(a);
                     stack.push(val);
+                    System.out.println(stack.peek());
+                }
+
+                else if (isNumeric(a)==true && j==arrOfStr.length-1 ){
+                    System.out.println("Esta mala la expresión mi rey");
                 }
                 else{
                     if(stack.size()>1){
@@ -69,9 +74,18 @@ public class Main {
                      
                      
                     }
+
+                    else {
+                        System.out.println("Esta mala la expresión mi rey");
+                    }
                 }
+                j = j+1;
                 
             }
+
+
+            System.out.println(stack.peek());
+            System.out.println("------------------------------------------------------------------------------------------------------------------------------------");
 
             
 
