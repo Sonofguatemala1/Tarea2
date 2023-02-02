@@ -3,10 +3,14 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Bienvenido a la calculadora donde tienes que meter datos de forma extraña!");
         Scanner myObj = new Scanner(System.in);
         int i = 0;
         Casio casio = new Casio();
+        Istack<String> stack = new StackArrayList<String>();
+
+
+        System.out.println("Bienvenido a la calculadora donde tienes que meter datos de forma extraña!");
+       
         while(i == 0){
             System.out.println("El formato en el que debes agregar la formula a resolver es el siguiente: ab operacion c operacion2");
             System.out.println("Como ya sabemos que no le van a entender aquí se deja un ejemplo:");
@@ -30,7 +34,12 @@ public class Main {
             String[] arrOfStr = postfix.split(" ");
             for (String a : arrOfStr) {
                 System.out.println(a);
+                stack.push(a);
             }
+
+            for (int j = 0; i < stack.size(); j++) {
+                System.out.println(stack.pop());
+              }
 
 
         }
