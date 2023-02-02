@@ -5,14 +5,16 @@ public class Main {
     public static void main(String[] args) {
         Scanner myObj = new Scanner(System.in);
         int i = 0;
-        int j = 0;
+        
         Casio casio = new Casio();
-        Istack<Float> stack = new StackArrayList<Float>();
+        
 
 
         System.out.println("Bienvenido a la calculadora donde tienes que meter datos de forma extraña!");
        
         while(i == 0){
+            int j = 0;
+            Istack<Float> stack = new StackArrayList<Float>();
             System.out.println("El formato en el que debes agregar la formula a resolver es el siguiente: ab operacion c operacion2");
             System.out.println("Como ya sabemos que no le van a entender aquí se deja un ejemplo:");
             System.out.println("4 5 + 6 - 7 8 9* -");
@@ -38,34 +40,37 @@ public class Main {
                 if(isNumeric(a)==true && j<arrOfStr.length-1 ){
                     float val = Float.parseFloat(a);
                     stack.push(val);
-                    System.out.println(stack.peek());
                 }
 
                 else if (isNumeric(a)==true && j==arrOfStr.length-1 ){
                     System.out.println("Esta mala la expresión mi rey");
                 }
-                else{
+                else if (isNumeric(a)==false){
+                    
                     if(stack.size()>1){
-
-                     if(a =="+"){
+                     if(a.equals("+")){
+        
                         float val1 = stack.pop();
                         float val2 = stack.pop();
+                        System.out.println("***************");
+                        System.out.println(val1);
+                        System.out.println(val2);
                         stack.push(casio.Add(val1, val2));
                      }
 
-                     else if(a =="-"){
+                     else if(a.equals("-")){
                         float val1 = stack.pop();
                         float val2 = stack.pop();
                         stack.push(casio.Substraction(val1, val2));
                      }
 
-                     else if(a =="*"){
+                     else if(a.equals("*")){
                         float val1 = stack.pop();
                         float val2 = stack.pop();
                         stack.push(casio.Multiply(val1, val2));
                      }
 
-                     else if(a =="/"){
+                     else if(a.equals("/")){
                         float val1 = stack.pop();
                         float val2 = stack.pop();
                         stack.push(casio.Divition(val1, val2));
@@ -83,11 +88,22 @@ public class Main {
                 
             }
 
-
+            System.out.println("Resultado");
             System.out.println(stack.peek());
             System.out.println("------------------------------------------------------------------------------------------------------------------------------------");
 
             
+            System.out.println("Continuar? Y/N");
+            String decision= myObj.nextLine();
+            if (decision.equals("N")){
+                i = 666;
+            }
+            else{
+                i = 0;
+            }
+
+            
+
 
 
         }
